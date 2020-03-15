@@ -1,3 +1,4 @@
+import 'package:covid_test_app/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {
@@ -9,7 +10,7 @@ class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('authenticate screen just so yk what screen u are on atm'),
+      child: SignIn(),
     );
   }
 }
