@@ -10,19 +10,32 @@ class AuthService {
   }
 
   //auth change to user stream
-  Stream<User> get user{
+  Stream<User> get user {
     return _auth.onAuthStateChanged
-    // .map((FirebaseUser user) => _userFromFirebaseUser(user));
-    .map(_userFromFirebaseUser);
+        // .map((FirebaseUser user) => _userFromFirebaseUser(user));
+        .map(_userFromFirebaseUser);
   }
 
   //Anonymous sign in
   Future signInAnon() async {
-    try{
+    try {
       AuthResult result = await _auth.signInAnonymously();
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
-    }catch(e){
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //sign in with email and password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -30,11 +43,12 @@ class AuthService {
 
   //register with email and password
   Future registerWithEmailAndPassword(String email, String password) async {
-    try{
-      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
-    } catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -42,9 +56,9 @@ class AuthService {
 
   //function to sign out
   Future signOut() async {
-    try{
+    try {
       return _auth.signOut();
-    } catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
