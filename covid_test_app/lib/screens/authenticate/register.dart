@@ -1,18 +1,17 @@
-import 'package:covid_test_app/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:covid_test_app/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
-  final AuthService _auth = AuthService();
+class _RegisterState extends State<Register> {
+   final AuthService _auth = AuthService();
 
   //states of text fields
   String email = '';
   String password = '';
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -45,7 +44,7 @@ class _SignInState extends State<SignIn> {
       //       ),
       //     )),
       appBar: AppBar(
-        title: Text('sign in here'),
+        title: Text('sign up here'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -79,7 +78,7 @@ class _SignInState extends State<SignIn> {
                 print(email);
                 print(password);
               },
-              child: Text('Sign in'),
+              child: Text('Register'),
             )
           ],
         )),
