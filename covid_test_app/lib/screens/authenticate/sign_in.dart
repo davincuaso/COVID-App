@@ -2,6 +2,9 @@ import 'package:covid_test_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggleView;
+  SignIn({this.toggleView});
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -46,6 +49,15 @@ class _SignInState extends State<SignIn> {
       //     )),
       appBar: AppBar(
         title: Text('sign in here'),
+        elevation: 0.0,
+        actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () {
+                widget.toggleView();
+              },
+              icon: Icon(Icons.person),
+              label: Text('Register'))
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -76,6 +88,13 @@ class _SignInState extends State<SignIn> {
             ),
             RaisedButton(
               onPressed: () async {
+                dynamic result = await _auth.signInAnon();
+                if (result == null) {
+                  print('error signing in');
+                } else {
+                  print(email);
+                  print(password);
+                }
                 print(email);
                 print(password);
               },

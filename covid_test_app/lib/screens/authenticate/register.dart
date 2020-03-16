@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:covid_test_app/services/auth.dart';
 
 class Register extends StatefulWidget {
+  final Function toggleView;
+  Register({this.toggleView});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-   final AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
 
   //states of text fields
   String email = '';
@@ -45,6 +48,15 @@ class _RegisterState extends State<Register> {
       //     )),
       appBar: AppBar(
         title: Text('sign up here'),
+        elevation: 0.0,
+        actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () {
+                widget.toggleView();
+              },
+              icon: Icon(Icons.person),
+              label: Text('Sign In'))
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
