@@ -1,4 +1,5 @@
 import 'package:covid_test_app/services/auth.dart';
+import 'package:covid_test_app/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -13,6 +14,8 @@ class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
+  bool loading = false;
+
   //states of text fields
   String email = '';
   String password = '';
@@ -20,7 +23,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return loading ? Loading() : new Scaffold(
       resizeToAvoidBottomPadding: false,
       // body: Column(
       //     crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,10 +100,14 @@ class _SignInState extends State<SignIn> {
                 RaisedButton(
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                       if (result == null) {
                         setState(() {
                           error = 'Could not sign in through Firebase';
+                          loading = false;
                         });
                       }
                     }

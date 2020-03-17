@@ -1,3 +1,4 @@
+import 'package:covid_test_app/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_test_app/services/auth.dart';
 
@@ -13,6 +14,8 @@ class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
+  bool loading = false;
+
   //states of text fields
   String email = '';
   String password = '';
@@ -20,7 +23,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return loading ? Loading() : new Scaffold(
       resizeToAvoidBottomPadding: false,
       // body: Column(
       //     crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,11 +100,15 @@ class _RegisterState extends State<Register> {
                 RaisedButton(
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.registerWithEmailAndPassword(
                           email, password);
                       if (result == null) {
                         setState(() {
                           error = 'Please give a valid email';
+                          loading = false;
                         });
                       }
                     }
