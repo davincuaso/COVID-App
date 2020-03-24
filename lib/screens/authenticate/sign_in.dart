@@ -75,7 +75,7 @@ var SignInBottomPart = Column(
           Icon(
             CustomIcons.facebook_official,
             size: 30,
-            color: Colors.blue[900]
+            color: Colors.blue[900],
           ),
           SizedBox(width: 10.0),
           Icon(
@@ -164,7 +164,6 @@ class _SignInState extends State<SignIn> {
                           filled: true,
                           fillColor: Color(0xFFECF2FF)
                       ),
-                      obscureText: true,
                       onChanged: (val) {
                         setState(() {
                           email = val;
@@ -202,7 +201,7 @@ class _SignInState extends State<SignIn> {
                           filled: true,
                           fillColor: Color(0xFFECF2FF)
                       ),
-                      obscureText: true,
+//                      obscureText: true,
                       onChanged: (val) {
                         setState(() {
                           password = val;
@@ -259,65 +258,6 @@ class _SignInState extends State<SignIn> {
           ],
         )
       ),
-
-//      body: Container(
-//        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-//        child: Form(
-//            key: _formKey,
-//            child: Column(
-//              children: <Widget>[
-//                SizedBox(height: 20.0),
-//                TextFormField(
-//                  validator: (val) =>
-//                      val.isEmpty ? 'Enter an email please' : null,
-//                  decoration: InputDecoration(labelText: 'Email'),
-//                  onChanged: (val) {
-//                    setState(() {
-//                      email = val;
-//                    });
-//                  },
-//                ),
-//                SizedBox(height: 20.0),
-//                TextFormField(
-//                  validator: (val) => val.length < 6
-//                      ? 'Password must at least contain 6 characters'
-//                      : null,
-//                  decoration: InputDecoration(labelText: 'Password'),
-//                  obscureText: true,
-//                  onChanged: (val) {
-//                    setState(() {
-//                      password = val;
-//                    });
-//                  },
-//                ),
-//                SizedBox(
-//                  height: 20.0,
-//                ),
-//                RaisedButton(
-//                  color: Colors.orange,
-//                  onPressed: () async {
-//                    if (_formKey.currentState.validate()) {
-//                      setState(() {
-//                        loading = true;
-//                      });
-//                      dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-//                      if (result == null) {
-//                        setState(() {
-//                          error = 'Could not sign in through Firebase';
-//                          loading = false;
-//                        });
-//                      }
-//                    }
-//                  },
-//                  child: Text('Sign in', style: TextStyle(color: Colors.white)),
-//                ),
-//                SizedBox(
-//                  height: 12.0,
-//                ),
-//                Text(error, style: TextStyle(color: Colors.red)),
-//              ],
-//            )),
-//      ),
     );
   }
 }

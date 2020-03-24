@@ -161,7 +161,6 @@ class _RegisterState extends State<Register> {
                             filled: true,
                             fillColor: Color(0xFFECF2FF)
                         ),
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() {
                             email = val;
@@ -199,7 +198,7 @@ class _RegisterState extends State<Register> {
                             filled: true,
                             fillColor: Color(0xFFECF2FF)
                         ),
-                        obscureText: true,
+//                        obscureText: true,
                         onChanged: (val) {
                           setState(() {
                             password = val;
