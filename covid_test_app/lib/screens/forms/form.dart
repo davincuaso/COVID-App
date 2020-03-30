@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:covid_test_app/screens/home/home.dart';
 import 'package:covid_test_app/shared/loading.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -69,12 +70,20 @@ class _FormScreenTopPart extends State<FormScreenTopPart> {
                         color: Colors.white,
                         size: 20.0,
                       ),
-                      SizedBox(width: 10.0),
-                      Text('Cancel',style: TextStyle(color: Colors.white,fontSize: 14.0)),
+                      FlatButton(
+                          onPressed: () {
+                            //go to register screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()),
+                            );
+                          },
+                          child: Text('Cancel',style: TextStyle(color: Colors.white,fontSize: 14.0))
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: 30.0),
+                SizedBox(height: 9),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
