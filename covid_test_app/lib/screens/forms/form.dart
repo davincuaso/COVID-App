@@ -2,6 +2,9 @@ import 'dart:ffi';
 import 'package:covid_test_app/shared/loading.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
 
 var question_i= 0;
 
@@ -38,6 +41,7 @@ class FormScreenTopPart extends StatefulWidget {
 }
 
 class _FormScreenTopPart extends State<FormScreenTopPart> {
+  var progressint = (question_i+1) / questionList.length;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,21 @@ class _FormScreenTopPart extends State<FormScreenTopPart> {
                     SizedBox(width: 35.0),
                     Text('Question ${question_i+1}/${questionList.length}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16.0))
                   ],
+                ),
+                SizedBox(height: 10.0),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(width: 35.0),
+                        Container(
+                          width: 200,
+                          child: LinearProgressIndicator(
+                            value: progressint,
+                            backgroundColor: Colors.white,
+                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF193A4D)),
+                          )
+                        )
+                    ],
                 ),
                 SizedBox(height:20.0),
                 Row(

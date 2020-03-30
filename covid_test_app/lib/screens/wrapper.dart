@@ -1,6 +1,8 @@
 import 'package:covid_test_app/models/user.dart';
 import 'package:covid_test_app/screens/authenticate/authenticate.dart';
 import 'package:covid_test_app/screens/home/home.dart';
+import 'package:covid_test_app/screens/forms/form.dart';
+import 'package:covid_test_app/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +17,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return FormScreen();
     }
     
   }
